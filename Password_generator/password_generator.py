@@ -16,7 +16,9 @@ numbers = "0123456789"
 def generate_mixed_characters():
 
    mixed_characters = string.ascii_lowercase + string.ascii_uppercase + symbols + numbers
-   characters = random.sample(mixed_characters, random.randint(12, 16))
+   min_mixed_char_length = 12
+   max_mixed_char_length = 16
+   characters = random.sample(mixed_characters, random.randint(min_mixed_char_length, max_mixed_char_length))
    return characters
 
 def generate_character(character_case):
@@ -25,32 +27,35 @@ def generate_character(character_case):
         characters = string.ascii_uppercase
     else:
         characters = string.ascii_lowercase
-
-    pos = random.randint(0, 25)
-    character = characters[pos]
-    return character    
+    char_first_index = 0
+    char_last_index = 25
+    index_of_char_selected = random.randint(char_first_index, char_last_index)
+    return characters[index_of_char_selected]    
 
 def generate_symbol():
-
-    pos = random.randint(0, 27)
-    return symbols[pos]
+    
+    symbol_first_index = 0
+    symbol_last_index = 28
+    index_of_symbol_selected = random.randint(symbol_first_index, symbol_last_index)
+    return symbols[index_of_symbol_selected]
 
 def least_chr_required():
 
-    lc = generate_character('u')
-    uc = generate_character('l')
-    sym = generate_symbol()
-    num = str(random.randint(0,9))
+    upper_case = generate_character('u')
+    lower_case = generate_character('l')
+    symbol = generate_symbol()
+    number_first_index = 0
+    number_last_index = 9
+    number = str(random.randint(number_first_index, number_last_index))
     sample_size = 4
-    least_chrs = "".join(random.sample(lc + uc + sym + num, sample_size))
+    least_chrs = "".join(random.sample(lower_case + upper_case + symbol + number, sample_size))
     return least_chrs
 
 def shuffle(required_chars, rest_chars):
 
     pwd = "" 
     length = len(rest_chars)
-
-    rest_chars = "".join(random.sample(rest_chars, len(rest_chars) - 4))
+    rest_chars = "".join(random.sample(rest_chars, len(rest_chars) - len(required_chars)))
     pwd = rest_chars + required_chars
     pwd = "".join(random.sample(pwd, len(pwd)))
 
@@ -62,29 +67,3 @@ rest_chars = "".join(generate_mixed_characters())
 password = shuffle(least_chars, rest_chars)
 print("Length of password: ", len(password))
 print("Password: ", password)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
