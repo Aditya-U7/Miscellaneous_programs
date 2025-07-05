@@ -44,9 +44,9 @@ def least_chr_required():
     upper_case = generate_character('u')
     lower_case = generate_character('l')
     symbol = generate_symbol()
-    number_first_index = 0
-    number_last_index = 9
-    number = str(random.randint(number_first_index, number_last_index))
+    number_first_value = 0
+    number_last_value = 9
+    number = str(random.randint(number_first_value, number_last_value))
     sample_size = 4
     least_chrs = "".join(random.sample(lower_case + upper_case + symbol + number, sample_size))
     return least_chrs
