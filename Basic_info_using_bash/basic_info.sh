@@ -93,10 +93,10 @@ user_info()
 
 	current_user_name="$(whoami)"
 	current_users="$(who | cut -d' ' -f1 | uniq)" 
-        system_name="$(hostname)"
+    system_name="$(hostname)"
 	echo "Current user name: $current_user_name"
 	echo "Logged in user(s): $current_users"
-        echo "System name: $system_name"
+    echo "System name: $system_name"
 
 
 }
