@@ -1,6 +1,6 @@
 : 'Author: Aditya Upadhye
 
-This is a bash program to display basic information about your system. For network information to be shown, your system needs to support 'nmcli' command.
+This is bash program to display basic information about your system. For network information to be shown, your system needs to support 'nmcli' command.
 
 '
 
@@ -93,9 +93,11 @@ user_info()
 
 	current_user_name="$(whoami)"
 	current_users="$(who | cut -d' ' -f1 | uniq)" 
-
+        system_name="$(hostname)"
 	echo "Current user name: $current_user_name"
 	echo "Logged in user(s): $current_users"
+        echo "System name: $system_name"
+
 
 }
 
