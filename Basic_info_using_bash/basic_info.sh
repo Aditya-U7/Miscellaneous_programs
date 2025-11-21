@@ -1,6 +1,6 @@
 : 'Author: Aditya Upadhye
 
-This is bash program to display basic information about your system. For network information to be shown, your system needs to support 'nmcli' command.
+This is a bash program to display basic information about your system. For network information to be shown, your system needs to support 'nmcli' command.
 
 '
 
