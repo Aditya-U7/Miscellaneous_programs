@@ -7,17 +7,25 @@ This is a bash program to display basic information about your system. For netwo
 #!/bin/bash
 
 
+BOLDGREEN='\e[1;32m'
+RED_BOLD="\e[1;31m"
+DARK_YELLOW='\e[1;33m'
+MAGENTA='\033[1;35m'
+CYAN='\033[1;36m'
+ENDCOLOUR='\e[0m'
+
+
 os_info()
 {
 
 	os_name="$(uname -o)"
-	echo "Operating system: $os_name"
+	echo -e "${CYAN}Operating system:${ENDCOLOUR} ${MAGENTA}${os_name}${ENDCOLOUR}"
 
 	kernel_name="$(uname -s)"
-	echo "Kernel name: $kernel_name"
+	echo -e "${CYAN}Kernel name:${ENDCOLOUR} ${MAGENTA}${kernel_name}${ENDCOLOUR}"
 
 	kernel_version="$(uname -r)"
-	echo "Kernel version: $kernel_version"
+	echo -e "${CYAN}Kernel version:${ENDCOLOUR} ${MAGENTA}${kernel_version}${ENDCOLOUR}"
 
 }
 
@@ -39,8 +47,8 @@ cpu_info()
 
 	for key in "${!cpu_info[@]}"
 	do
-		echo "$key: ${cpu_info[$key]}"
-	done
+		echo -e "${CYAN}$key${ENDCOLOUR}: ${MAGENTA}${cpu_info[$key]}${ENDCOLOUR}"
+	done 
 
 }
 
@@ -58,14 +66,14 @@ network_info()
 		then 
 			network_name="$(nmcli dev show | grep -m 1 "GENERAL.CONNECTION" | cut -d':' -f2)"
 			network_name="${network_name##*( )}"
-			echo "Connected Network Name: $network_name"
+			echo -e "${CYAN}Connected Network Name${ENDCOLOUR}: ${DARK_YELLOW}$network_name${ENDCOLOUR}"
 
 			network_status="$(nmcli networking connectivity)"
 			if [[ $network_status == "full" ]]
 			then
-				echo "Internet status of $network_name: Active"
+				echo -e "${CYAN}Internet status of${ENDCOLOUR} ${DARK_YELLOW}$network_name${ENDCOLOUR}: ${BOLDGREEN}Active${ENDCOLOUR}"             
 			else
-				echo "Internet status of $network_name: Not active"
+				echo -e "${CYAN}Internet status of${ENDCOLOUR} ${DARK_YELLOW}$network_name${ENDCOLOUR}: ${RED_BOLD}Not active${ENDCOLOUR}"
 			fi
 
 			dns_server_ipv4="$(nmcli dev show | grep "IP4.DNS" | cut -d':' -f2)"
@@ -75,19 +83,19 @@ network_info()
 			dns_server_ipv6="${dns_server_ipv6##*( )}"
 			if [[ -n $dns_server_ipv4 ]]
 			then
-				echo "DNS IPv4: $dns_server_ipv4"
+				echo -e "${CYAN}DNS IPv4 ${ENDCOLOUR}:${MAGENTA} $dns_server_ipv4 ${ENDCOLOUR}"
 			fi
 			if [[ -n $dns_server_ipv6 ]]
 			then
-				echo  "DNS IPv6: $dns_server_ipv6"
+				echo -e "${CYAN}DNS IPv6 ${ENDCOLOUR}:${MAGENTA} $dns_server_ipv6 ${ENDCOLOUR}"
 			fi
 
 		else 
-			echo "Network info: not connected to a network"
+			echo -e "${DARK_YELLOW}Network info: not connected to a network.${ENDCOLOUR}"
 		fi
 
 	else
-		echo "Not available to fetch network info."
+		echo -e "${REDBOLD}Not available to fetch network info.${ENDCOLOUR}"
 
 	fi
 
@@ -100,9 +108,9 @@ user_info()
 	current_user_name="$(whoami)"
 	current_users="$(who | cut -d' ' -f1 | sort | uniq)" 
 	system_name="$(hostname)"
-	echo "Current user name: $current_user_name"
-	echo "Logged in user(s): $current_users"
-	echo "System name: $system_name"
+	echo -e "${CYAN}Current user name${ENDCOLOUR}: ${MAGENTA}${current_user_name}${ENDCOLOUR}"
+	echo -e "${CYAN}Logged in user(s)${ENDCOLOUR}: ${MAGENTA}${current_users}${ENDCOLOUR}"
+	echo -e "${CYAN}System name${ENDCOLOUR}: ${MAGENTA}${system_name}${ENDCOLOUR}"
 
 }
 
