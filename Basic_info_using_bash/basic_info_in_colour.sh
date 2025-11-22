@@ -95,7 +95,7 @@ network_info()
 		fi
 
 	else
-		echo -e "${REDBOLD}Not available to fetch network info.${ENDCOLOUR}"
+		echo -e "${RED_BOLD}Not available to fetch network info.${ENDCOLOUR}"
 
 	fi
 
