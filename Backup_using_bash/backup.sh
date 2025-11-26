@@ -6,6 +6,8 @@ Running the file:
 
 bash backup.sh path_to_directory_to_be_compressed path_to_destination_directory
 
+Will work if your directory name does not contain spaces as $# then will interpret it as an extra argument. 
+
 '
 
 
