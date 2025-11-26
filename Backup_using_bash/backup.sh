@@ -15,7 +15,7 @@ bash backup.sh path_to_directory_to_be_compressed path_to_destination_directory
 verify_no_of_arguments()
 {
 
-	flag=0
+	flag=1
 
 	if [[ $# -lt 2 ]]
 	then
@@ -24,7 +24,7 @@ verify_no_of_arguments()
 	then 
 		echo "More than 2 arguments."
 	else
-		flag=1
+		flag=0
 	fi
 
 	return $flag
@@ -35,20 +35,20 @@ verify_no_of_arguments()
 verify_both_directories()
 {
 
-	valid_dir=0
+	valid_dir=1
 
-	if [[ !(-d $1) && !(-d $2) ]]
+	if [[ ! -d "$1" && ! -d "$2" ]]
 	then
 		echo "$1 and $2 are not directories."
 
-	elif [[ ! (-d $1) ]]
+	elif [[ ! -d "$1" ]]
 	then 
 		echo "$1 is not a directory."
-	elif [[ ! (-d $2) ]]
+	elif [[ ! -d "$2" ]]
 	then
 		echo "$2 is not a directory."
 	else    
-		valid_dir=1
+		valid_dir=0
 	fi
 
 	return $valid_dir
@@ -59,24 +59,23 @@ verify_both_directories()
 backup()
 {
 
-	args_mesg="$(verify_no_of_arguments $@)"
+	args_mesg="$(verify_no_of_arguments "$@")"
 	args_status=$?
-
-	if ((args_status))
+        dir_status=1
+	if [[ $args_status -eq 0 ]]
 	then
-		dir_mesg="$(verify_both_directories $1 $2)"
+		dir_mesg="$(verify_both_directories "$1" "$2")"
 		dir_status=$?
 	fi
 
-	if (($dir_status))
+	if [[ $dir_status -eq 0 ]]
 	then
-		dir=$1
-		destination=$2
+		dir="$1"
+		destination="$2"
 
 		echo "Creating backup..."
-		sleep 1
 		dat="$(date +%Y-%m-%d-[%T])"
-		tar -cvzf "$destination/${dir##*/}-${dat}.tar.gz" $dir/
+		tar -cvzf "$destination/${dir##*/}-${dat}.tar.gz" "$dir/"
 
 	else
 		echo -n $args_mesg
