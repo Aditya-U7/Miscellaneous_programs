@@ -61,7 +61,8 @@ backup()
 
 	args_mesg="$(verify_no_of_arguments "$@")"
 	args_status=$?
-        dir_status=1
+    dir_status=1
+	
 	if [[ $args_status -eq 0 ]]
 	then
 		dir_mesg="$(verify_both_directories "$1" "$2")"
