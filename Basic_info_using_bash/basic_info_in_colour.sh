@@ -10,8 +10,8 @@ This is a bash program to display basic information about your system. For netwo
 BOLDGREEN='\e[1;32m'
 RED_BOLD="\e[1;31m"
 DARK_YELLOW='\e[1;33m'
-MAGENTA='\033[1;35m'
-CYAN='\033[1;36m'
+MAGENTA='\e[1;35m'
+CYAN='\e[1;36m'
 ENDCOLOUR='\e[0m'
 
 
