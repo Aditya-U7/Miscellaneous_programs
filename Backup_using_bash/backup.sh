@@ -6,7 +6,11 @@ Running the file:
 
 bash backup.sh path_to_directory_to_be_compressed path_to_destination_directory
 
-Will work if your directory name does not contain spaces as $# then will interpret it as an extra argument. 
+If a directory contains spaces in its name, double-quote "the directory name with spaces" and enter its absolute path for the program to interpret it as a single argument.
+
+"~/directory name with spaces" will not work. "/dir1/dir2/directory name with spaces" will work if valid path.
+
+For directory names not containing spaces, relative paths can work.
 
 '
 
@@ -64,7 +68,7 @@ backup()
 	args_mesg="$(verify_no_of_arguments "$@")"
 	args_status=$?
     dir_status=1
-	
+	dir_mesg=""
 	if [[ $args_status -eq 0 ]]
 	then
 		dir_mesg="$(verify_both_directories "$1" "$2")"
@@ -90,5 +94,5 @@ backup()
 }
 
 
-backup $@
+backup "$@"
 
