@@ -6,6 +6,12 @@ Running the file:
 
 bash backup.sh path_to_directory_to_be_compressed path_to_destination_directory
 
+If a directory contains spaces in its name, double-quote "the directory name with spaces" and enter its absolute path for the program to interpret it as a single argument.
+
+"~/directory name with spaces" will not work. "/dir1/dir2/directory name with spaces" will work if valid path.
+
+For directory names not containing spaces, relative paths can work.
+
 '
 
 
@@ -59,10 +65,10 @@ verify_both_directories()
 backup()
 {
 
-	local args_mesg="$(verify_no_of_arguments "$@")"
-	local args_status=$?
-	local dir_status=1
-	local dir_mesg=""
+	args_mesg="$(verify_no_of_arguments "$@")"
+	args_status=$?
+	dir_status=1
+	dir_mesg=""
 	if [[ $args_status -eq 0 ]]
 	then
 		dir_mesg="$(verify_both_directories "$1" "$2")"
@@ -75,7 +81,7 @@ backup()
 		local destination="$2"
 
 		echo "Creating backup..."
-		dat="$(date +%Y-%m-%d-[%T])"
+		local dat="$(date +%Y-%m-%d-[%T])"
 		tar -cvzf "$destination/${dir##*/}-${dat}.tar.gz" "$dir/"
 
 	else
