@@ -6,12 +6,6 @@ Running the file:
 
 bash backup.sh path_to_directory_to_be_compressed path_to_destination_directory
 
-If a directory contains spaces in its name, double-quote "the directory name with spaces" and enter its absolute path for the program to interpret it as a single argument.
-
-"~/directory name with spaces" will not work. "/dir1/dir2/directory name with spaces" will work if valid path.
-
-For directory names not containing spaces, relative paths can work.
-
 '
 
 
@@ -21,7 +15,7 @@ For directory names not containing spaces, relative paths can work.
 verify_no_of_arguments()
 {
 
-	flag=1
+	local flag=1
 
 	if [[ $# -lt 2 ]]
 	then
@@ -41,7 +35,7 @@ verify_no_of_arguments()
 verify_both_directories()
 {
 
-	valid_dir=1
+	local valid_dir=1
 
 	if [[ ! -d "$1" && ! -d "$2" ]]
 	then
@@ -51,7 +45,7 @@ verify_both_directories()
 	then 
 		echo "$1 is not a directory."
 	elif [[ ! -d "$2" ]]
-	then
+	then 
 		echo "$2 is not a directory."
 	else    
 		valid_dir=0
@@ -65,10 +59,10 @@ verify_both_directories()
 backup()
 {
 
-	args_mesg="$(verify_no_of_arguments "$@")"
-	args_status=$?
-    dir_status=1
-	dir_mesg=""
+	local args_mesg="$(verify_no_of_arguments "$@")"
+	local args_status=$?
+	local dir_status=1
+	local dir_mesg=""
 	if [[ $args_status -eq 0 ]]
 	then
 		dir_mesg="$(verify_both_directories "$1" "$2")"
@@ -77,8 +71,8 @@ backup()
 
 	if [[ $dir_status -eq 0 ]]
 	then
-		dir="$1"
-		destination="$2"
+		local dir="$1"
+		local destination="$2"
 
 		echo "Creating backup..."
 		dat="$(date +%Y-%m-%d-[%T])"
