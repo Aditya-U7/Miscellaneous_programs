@@ -32,9 +32,8 @@ cpu_info()
 	for i in "${property_names[@]}"
 	do 
 
-		cpu_info["$i"]="$(lscpu | grep "$i" | cut -d':' -f2)"
-		cpu_info["$i"]=${cpu_info["$i"]##*( )}
-
+		cpu_info["$i"]="$(lscpu | grep "$i" | cut -d':' -f2 | xargs)"
+		
 	done
 
 	for key in "${!cpu_info[@]}"
@@ -56,8 +55,7 @@ network_info()
 		local connected_state="$(nmcli connection show --active | grep -v loopback | grep -v UUID | cut -d' ' -f1)"
 		if [[ -n $connected_state ]]
 		then 
-			local network_name="$(nmcli dev show | grep -m 1 "GENERAL.CONNECTION" | cut -d':' -f2)"
-			network_name="${network_name##*( )}"
+			local network_name="$(nmcli dev show | grep -m 1 "GENERAL.CONNECTION" | cut -d':' -f2 | xargs)"
 			echo "Connected Network Name: $network_name"
 
 			local network_status="$(nmcli networking connectivity)"
@@ -68,11 +66,9 @@ network_info()
 				echo "Internet status of $network_name: Not active"
 			fi
 
-			local dns_server_ipv4="$(nmcli dev show | grep "IP4.DNS" | cut -d':' -f2)"
-			local dns_server_ipv6="$(nmcli dev show | grep "IP6.DNS" | cut -d':' -f2-)"
+			local dns_server_ipv4="$(nmcli dev show | grep "IP4.DNS" | cut -d':' -f2 | xargs)"
+			local dns_server_ipv6="$(nmcli dev show | grep "IP6.DNS" | cut -d':' -f2- | xargs)"
 
-			dns_server_ipv4="${dns_server_ipv4##*( )}"
-			dns_server_ipv6="${dns_server_ipv6##*( )}"
 			if [[ -n $dns_server_ipv4 ]]
 			then
 				echo "DNS IPv4: $dns_server_ipv4"
