@@ -12,6 +12,7 @@ no_of_parties = int(input("Enter the number of parties:\n"))
 party_votes = {}
 cur_party_quotient = {}
 seats_alloc = {}
+seats_allocated_count = 0
 
 for i in range(no_of_parties):
      party_name = input("Enter the party name: ")
