@@ -1,5 +1,5 @@
 
-This contains a simple implemenatation of d'Hondt method to allocate seats to various parties. 
+This contains a simple implemenatation of d'Hondt method to allocate seats to various parties in various countries.
 
 It contains two files: du.py and dh.py
 
