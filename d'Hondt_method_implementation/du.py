@@ -26,7 +26,7 @@ for i in range(1, no_of_seats + 1):
     max_val = max(sorted(cur_party_quotient.values()))
     flag = False
 
-    #print(max_val) For printing the maximum dividend of this round. Parties having this value will get allocated a seat.
+    #print(max_val) For printing the maximum quotient of this round. Parties having this value will get allocated a seat.
 
     for key, value in cur_party_quotient.items():
         if value >= max_val:
@@ -41,7 +41,7 @@ for i in range(1, no_of_seats + 1):
 
         seats_allocated_count += 1
 
-        print(cur_party_quotient) #To know the party dividend values for this round.
+        print(cur_party_quotient) #To know the party quotient values for this round.
 
         if seats_allocated_count == no_of_seats:
              flag = True
