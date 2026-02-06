@@ -16,3 +16,8 @@ The du.py file allows for user input, while dh.py works with predefined initiali
  https://www.elections.im.dk/media/15735/the-electoral-system-in-denmark.pdf#page=3
 
  https://senedd.wales/senedd-now/senedd-blog/senedd-election-2026-what-is-the-d-hondt-formula-and-how-does-it-work/
+
+ Out of the 465 seats in the House of Representatives (lower house of parliament) in Japan, 176 seats are allcoated using proportional representation using this method (as of 2026).
+
+ https://mainichi.jp/english/articles/20260127/p2g/00m/0na/020000c
+
