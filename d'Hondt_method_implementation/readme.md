@@ -3,7 +3,7 @@ This contains a simple implementation of **d'Hondt method** use to allocate seat
 
 It contains two files: **du.py** and **dh.py**
 
-The **dt_scot.py** and **dt_scot.py** are specific for Scottish electoral system.
+The **dt_scot.py** and **du_scot.py** are specific for Scottish electoral system.
 
 The du.py file allows for user input, while dh.py works with predefined initialisation which can be changed in the file.
 
