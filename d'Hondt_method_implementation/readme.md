@@ -26,4 +26,4 @@ The du.py file allows for user input, while dh.py works with predefined initiali
  https://www.parliament.scot/-/media/files/spice/factsheets/parliamentary-business/scottish-parliament-electoral-system-12-may-2021.pdf#page=4
  
  
- https://whocanivotefor.co.uk/elections/voting_system/ams/
+ 
